@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Все юзеры</title>
+</head>
+
+<body>
+<div th:each="user: ${users}">
+    <a th:href = "@{/admin/{id}(id=${user.id})}" th:text = "${user.username}">user</a>
+    <br>
+    <a th:href="@{/admin/{id}/edit(id=${user.id})}">Edit user</a>
+    <form th:method = "DELETE" th:action="@{/admin/{id}(id = ${user.id})}">
+        <input type="submit" value = "Delete user"/> </form>
+    <br>
+    <br>
+</div>
+<br>
+<a href="new">Создать нового пользователя</a>
+<br>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Выйти</button>
+</form>
+</body>
+</html>
